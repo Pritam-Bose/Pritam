@@ -27,6 +27,15 @@ body {
   color: var(--color-text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Anti-copy: Ctrl+A / drag selects nothing on the page; inputs stay editable */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input,
+textarea {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 /* Custom scrollbar */

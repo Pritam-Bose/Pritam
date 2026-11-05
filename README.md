@@ -12,6 +12,17 @@ npm run build   # production build into dist/
 npm run lint    # code checks
 ```
 
+The home-page chatbot needs the Python backend too (in a second terminal):
+
+```bash
+cd server
+pip install -r requirements.txt   # first time only
+python -m uvicorn main:app --port 8000
+```
+
+The Groq API key lives in `server/.env` (never committed — the frontend
+never sees it; it only calls `http://localhost:8000/chat`).
+
 ## Where everything lives
 
 ```
@@ -38,7 +49,11 @@ src/
       SitePreview.jsx      Scaled live iframe of a deployed site
       ScrollToTop.jsx      Starts each new page at the top
       Icons.jsx            GitHub / LinkedIn logos (not in lucide-react)
+      ChatWidget.jsx       Floating chatbot on the home page (calls the backend)
   assets/                  profile.png and the certificate images
+server/
+  main.py                  FastAPI chatbot: /chat proxies to the Groq API
+  .env                     GROQ_API_KEY lives here (gitignored)
 ```
 
 Pages: `/` home · `/projects` · `/skills` · `/research` · `/certifications` · `/contact`.

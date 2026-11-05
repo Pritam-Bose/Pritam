@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowDown } from 'lucide-react';
 import { profile } from '../data/site';
+import ChatWidget from './ui/ChatWidget';
 
 function useTypingEffect(phrases) {
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -116,6 +117,8 @@ export default function Hero() {
           </div>
         </motion.div>
       </div>
+
+      <ChatWidget />
     </section>
   );
 }
