@@ -3,7 +3,6 @@ import os
 import httpx
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 load_dotenv()
@@ -20,13 +19,8 @@ SYSTEM_PROMPT = (
     "Contact and Projects pages of the site."
 )
 
+# Vercel detects the exported ASGI `app` in api/index.py as a Python function
 app = FastAPI(title="Portfolio Chatbot")
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 
 class Message(BaseModel):
@@ -38,12 +32,12 @@ class ChatRequest(BaseModel):
     messages: list[Message]
 
 
-@app.get("/health")
+@app.get("/api/health")
 def health():
     return {"status": "ok", "model": MODEL}
 
 
-@app.post("/chat")
+@app.post("/api/chat")
 async def chat(body: ChatRequest):
     if not GROQ_API_KEY:
         raise HTTPException(500, "GROQ_API_KEY is not set on the server")

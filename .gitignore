@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Secrets (Vercel injects GROQ_API_KEY from project settings)
+.env
+__pycache__/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

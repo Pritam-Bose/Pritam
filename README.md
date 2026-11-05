@@ -15,13 +15,15 @@ npm run lint    # code checks
 The home-page chatbot needs the Python backend too (in a second terminal):
 
 ```bash
-cd server
 pip install -r requirements.txt   # first time only
-python -m uvicorn main:app --port 8000
+python -m uvicorn api.index:app --port 8000
 ```
 
-The Groq API key lives in `server/.env` (never committed — the frontend
-never sees it; it only calls `http://localhost:8000/chat`).
+The widget calls `/api/chat`. Locally Vite forwards it to port 8000
+(`vite.config.js`); on Vercel the same path is served by the Python
+function in `api/index.py`. Set `GROQ_API_KEY` in the Vercel project
+settings — locally it lives in the root `.env` (gitignored). The frontend
+never sees the key.
 
 ## Where everything lives
 
@@ -49,11 +51,11 @@ src/
       SitePreview.jsx      Scaled live iframe of a deployed site
       ScrollToTop.jsx      Starts each new page at the top
       Icons.jsx            GitHub / LinkedIn logos (not in lucide-react)
-      ChatWidget.jsx       Floating chatbot on the home page (calls the backend)
+      ChatWidget.jsx       Floating chatbot on the home page (calls /api/chat)
   assets/                  profile.png and the certificate images
-server/
-  main.py                  FastAPI chatbot: /chat proxies to the Groq API
-  .env                     GROQ_API_KEY lives here (gitignored)
+api/
+  index.py                 FastAPI function: /api/chat proxies to Groq (Vercel entry)
+requirements.txt           Python deps for the Vercel function
 ```
 
 Pages: `/` home · `/projects` · `/skills` · `/research` · `/certifications` · `/contact`.

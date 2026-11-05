@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MessageCircle, Send, X } from 'lucide-react';
 
-const API_URL = 'http://localhost:8000/chat';
+const API_URL = '/api/chat';
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
