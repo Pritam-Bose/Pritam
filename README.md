@@ -16,7 +16,7 @@ The home-page chatbot needs the Python backend too (in a second terminal):
 
 ```bash
 pip install -r requirements.txt   # first time only
-python -m uvicorn api.index:app --port 8000
+python -m uvicorn api.chat:app --port 8000
 ```
 
 The widget calls `/api/chat`. Locally Vite forwards it to port 8000
@@ -54,7 +54,7 @@ src/
       ChatWidget.jsx       Floating chatbot on the home page (calls /api/chat)
   assets/                  profile.png and the certificate images
 api/
-  index.py                 FastAPI function: /api/chat proxies to Groq (Vercel entry)
+  chat.py                  FastAPI function served at /api/chat, proxies to Groq
 requirements.txt           Python deps for the Vercel function
 ```
 
