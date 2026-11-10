@@ -82,6 +82,21 @@ textarea {
   width: clamp(300px, 24vw, 420px);
 }
 
+/* Slow-rotating background wheels (hero decoration) */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 40s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin-slow 40s linear infinite reverse;
+}
+
 /* =============================================
    GLOBAL SECTION WRAPPER — centers all content
    ============================================= */

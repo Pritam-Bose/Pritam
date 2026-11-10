@@ -213,13 +213,12 @@ export const certifications = [
 export const contact = {
   blurb:
     'Feel free to reach out for collaborations, project discussions, or just to say hello.',
-  // icon must be one of: 'github' | 'linkedin' | 'mail' | 'phone' | 'whatsapp' | 'download'
+  // icon must be one of: 'github' | 'linkedin' | 'mail' | 'phone' | 'whatsapp'
   links: [
     { label: 'GitHub', href: 'https://github.com/Pritam-Bose', icon: 'github' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/pritam-bose-63a3a33a2', icon: 'linkedin' },
     { label: EMAIL, href: `mailto:${EMAIL}`, icon: 'mail' },
     { label: `+${PHONE_COUNTRY_CODE} ${PHONE.slice(0, 5)} ${PHONE.slice(5)}`, href: `tel:+${PHONE_COUNTRY_CODE}${PHONE}`, icon: 'phone' },
     { label: 'WhatsApp', href: `https://wa.me/${PHONE_COUNTRY_CODE}${PHONE}`, icon: 'whatsapp' },
-    { label: 'Download CV', href: '/Pritam_Bose_CV.pdf', icon: 'download', tooltip: "Pritam Bose's CV" },
   ],
 };

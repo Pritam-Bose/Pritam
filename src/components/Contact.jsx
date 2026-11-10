@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, Check, Download } from 'lucide-react';
+import { Mail, Phone, Check } from 'lucide-react';
 import { contact } from '../data/site';
 import SectionHeading from './ui/SectionHeading';
 import Reveal from './ui/Reveal';
@@ -12,7 +12,6 @@ const contactIcons = {
   mail: Mail,
   phone: Phone,
   whatsapp: WhatsappIcon,
-  download: Download,
 };
 
 export default function Contact() {
@@ -62,14 +61,13 @@ export default function Contact() {
             const Icon = contactIcons[link.icon];
             const isExternal = link.href.startsWith('http');
             const isEmail = link.href.startsWith('mailto:');
-            const isDownload = link.href.endsWith('.pdf');
             const showingCopied = isEmail && copied;
-            const button = (
+            return (
               <a
+                key={link.label}
                 href={link.href}
                 {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
                 {...(isEmail && { onClick: () => copyEmail(link.label) })}
-                {...(isDownload && { download: true })}
                 className="inline-flex items-center gap-2.5 px-6 py-3 bg-bg-card rounded-xl border border-border-light shadow-sm text-text-main font-medium text-sm hover:border-primary hover:text-primary hover:shadow-md transition-all duration-200"
               >
                 {showingCopied ? (
@@ -79,15 +77,6 @@ export default function Contact() {
                 )}
                 {showingCopied ? 'Copied to clipboard!' : link.label}
               </a>
-            );
-            if (!link.tooltip) return <span key={link.label}>{button}</span>;
-            return (
-              <span key={link.label} className="relative group">
-                {button}
-                <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-text-main px-2.5 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100">
-                  {link.tooltip}
-                </span>
-              </span>
             );
           })}
         </Reveal>

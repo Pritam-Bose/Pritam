@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { navLinks, profile } from '../data/site';
 
 const linkClass = ({ isActive }) =>
@@ -35,6 +35,19 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
+          <span className="relative group">
+            <a
+              href="/Pritam_Bose_CV.pdf"
+              download
+              aria-label="Download Pritam Bose's CV"
+              className="p-1.5 text-text-secondary hover:text-primary transition-colors inline-flex"
+            >
+              <Download size={19} />
+            </a>
+            <span className="pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded-lg bg-text-main px-2.5 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+              Pritam Bose&apos;s CV
+            </span>
+          </span>
         </div>
 
         <button
@@ -68,6 +81,15 @@ export default function Navbar() {
                   {link.label}
                 </NavLink>
               ))}
+              <a
+                href="/Pritam_Bose_CV.pdf"
+                download
+                onClick={() => setIsOpen(false)}
+                className="text-sm font-medium text-text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-2"
+              >
+                <Download size={16} />
+                Download CV
+              </a>
             </div>
           </motion.div>
         )}
