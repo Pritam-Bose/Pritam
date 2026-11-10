@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowDown, Cog } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import { profile } from '../data/site';
 import ChatWidget from './ui/ChatWidget';
 
@@ -47,20 +47,6 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden">
-      {/* Decorative rotating wheels — background only, never block clicks or text */}
-      <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none">
-        <Cog
-          className="animate-spin-slow absolute -right-24 top-10 text-primary opacity-[0.05]"
-          size={380}
-          strokeWidth={0.7}
-        />
-        <Cog
-          className="animate-spin-slow-reverse absolute -left-16 bottom-2 text-primary-light opacity-[0.05]"
-          size={200}
-          strokeWidth={0.7}
-        />
-      </div>
-
       {/* Desktop: photo flush against the right edge of the screen */}
       <motion.div
         initial={{ opacity: 0, x: 60 }}
